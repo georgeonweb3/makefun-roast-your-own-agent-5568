@@ -22,6 +22,8 @@ OUTPUT_PATH = os.environ.get("ENTRY_OUTPUT", "/output/entry.txt")
 def main() -> None:
     # Gate self-check: /output/entry.txt must be UTF-8 text of
     # 1 to 140 characters, not only whitespace — and one line.
+    # No trailing newline: the gate counts every byte, and a
+    # newline would split the roast from its punchline.
     assert 1 <= len(LINE) <= 140, f"line is {len(LINE)} chars, gate wants 1-140"
     assert "\n" not in LINE and "\r" not in LINE, "entry must be a single line"
     assert LINE.strip(), "line must not be only whitespace"
